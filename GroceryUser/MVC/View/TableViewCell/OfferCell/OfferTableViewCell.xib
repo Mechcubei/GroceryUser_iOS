@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OfferTableViewCell" rowHeight="114" id="KGk-i7-Jjw" customClass="OfferTableViewCell" customModule="GroceryUser" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="114"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="407" height="114"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VoZ-Gp-w1c" customClass="DesignableView" customModule="GroceryUser" customModuleProvider="target">
+                        <rect key="frame" x="8" y="8" width="391" height="98"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="All-Products" translatesAutoresizingMaskIntoConstraints="NO" id="7JF-RK-Cos">
+                                <rect key="frame" x="8" y="8" width="100" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="aho-BQ-N9U"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Ko-Rd-gfh">
+                                <rect key="frame" x="116" y="8" width="267" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reliance Fresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4m-rU-u5H">
+                                        <rect key="frame" x="0.0" y="0.0" width="267" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 13.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dN3-PK-rdH">
+                                        <rect key="frame" x="0.0" y="24.5" width="267" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="All-Products" translatesAutoresizingMaskIntoConstraints="NO" id="oFc-cg-fcL">
+                                <rect key="frame" x="116" y="60" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="8Fw-MZ-9nQ"/>
+                                    <constraint firstAttribute="height" constant="25" id="IDL-MV-JHB"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Synced july 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfx-CQ-CBG">
+                                <rect key="frame" x="149" y="64" width="234" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7JF-RK-Cos" firstAttribute="leading" secondItem="VoZ-Gp-w1c" secondAttribute="leading" constant="8" id="11M-ov-4YH"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oFc-cg-fcL" secondAttribute="bottom" constant="8" id="5CH-Ot-ZBg"/>
+                            <constraint firstItem="4Ko-Rd-gfh" firstAttribute="top" secondItem="VoZ-Gp-w1c" secondAttribute="top" constant="8" id="Bkf-9r-ISJ"/>
+                            <constraint firstAttribute="bottom" secondItem="7JF-RK-Cos" secondAttribute="bottom" constant="8" id="Ctg-N3-0ma"/>
+                            <constraint firstItem="oFc-cg-fcL" firstAttribute="top" secondItem="4Ko-Rd-gfh" secondAttribute="bottom" constant="8" id="Gvg-h7-Ok3"/>
+                            <constraint firstItem="7JF-RK-Cos" firstAttribute="top" secondItem="VoZ-Gp-w1c" secondAttribute="top" constant="8" id="Wun-2M-NPX"/>
+                            <constraint firstItem="4Ko-Rd-gfh" firstAttribute="leading" secondItem="7JF-RK-Cos" secondAttribute="trailing" constant="8" id="aw0-QZ-DyF"/>
+                            <constraint firstItem="oFc-cg-fcL" firstAttribute="leading" secondItem="4Ko-Rd-gfh" secondAttribute="leading" id="fNa-zw-qg1"/>
+                            <constraint firstItem="Qfx-CQ-CBG" firstAttribute="trailing" secondItem="4Ko-Rd-gfh" secondAttribute="trailing" id="kpK-l7-Sxn"/>
+                            <constraint firstItem="Qfx-CQ-CBG" firstAttribute="leading" secondItem="oFc-cg-fcL" secondAttribute="trailing" constant="8" id="m48-4E-ite"/>
+                            <constraint firstItem="Qfx-CQ-CBG" firstAttribute="centerY" secondItem="oFc-cg-fcL" secondAttribute="centerY" id="svE-Qg-sYG"/>
+                            <constraint firstAttribute="trailing" secondItem="4Ko-Rd-gfh" secondAttribute="trailing" constant="8" id="zxX-6z-J9n"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                <size key="value" width="0.0" height="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="VoZ-Gp-w1c" secondAttribute="trailing" constant="8" id="DGR-wG-P2l"/>
+                    <constraint firstAttribute="bottom" secondItem="VoZ-Gp-w1c" secondAttribute="bottom" constant="8" id="Nf1-dO-brZ"/>
+                    <constraint firstItem="VoZ-Gp-w1c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="OdH-DK-4zF"/>
+                    <constraint firstItem="VoZ-Gp-w1c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="goZ-NN-cpg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="194.92753623188406" y="176.11607142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="All-Products" width="93.333335876464844" height="66.666664123535156"/>
+    </resources>
+</document>

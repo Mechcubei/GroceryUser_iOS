@@ -1,0 +1,6 @@
+framework module MKOtpView {
+  umbrella header "MKOtpView-umbrella.h"
+
+  export *
+  module * { export * }
+}

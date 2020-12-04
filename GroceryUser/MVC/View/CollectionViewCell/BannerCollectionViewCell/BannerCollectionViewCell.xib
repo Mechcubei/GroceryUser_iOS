@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BannerCollectionViewCell" id="gTV-IL-0wX" customClass="BannerCollectionViewCell" customModule="GroceryUser" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="261" height="146"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="261" height="146"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQz-Ar-gVH">
+                        <rect key="frame" x="0.0" y="0.0" width="261" height="146"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="first_banner" translatesAutoresizingMaskIntoConstraints="NO" id="0O7-F7-Vey">
+                                <rect key="frame" x="0.0" y="0.0" width="261" height="146"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0O7-F7-Vey" firstAttribute="top" secondItem="lQz-Ar-gVH" secondAttribute="top" constant="0.10000000000000001" id="4aC-N9-KtU"/>
+                            <constraint firstItem="0O7-F7-Vey" firstAttribute="leading" secondItem="lQz-Ar-gVH" secondAttribute="leading" constant="0.10000000000000001" id="YTq-cb-gJ5"/>
+                            <constraint firstAttribute="trailing" secondItem="0O7-F7-Vey" secondAttribute="trailing" constant="0.10000000000000001" id="pHB-8I-CRx"/>
+                            <constraint firstAttribute="bottom" secondItem="0O7-F7-Vey" secondAttribute="bottom" constant="0.10000000000000001" id="qFo-TQ-f0y"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="lQz-Ar-gVH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="0.10000000000000001" id="Gzc-5k-bIK"/>
+                <constraint firstItem="lQz-Ar-gVH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="0.10000000000000001" id="Md9-Iw-5Zg"/>
+                <constraint firstAttribute="trailing" secondItem="lQz-Ar-gVH" secondAttribute="trailing" constant="0.10000000000000001" id="PDP-WY-6uQ"/>
+                <constraint firstAttribute="bottom" secondItem="lQz-Ar-gVH" secondAttribute="bottom" constant="0.10000000000000001" id="d74-bJ-e25"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="261" height="146"/>
+            <connections>
+                <outlet property="imgView" destination="0O7-F7-Vey" id="9an-Jc-jmJ"/>
+            </connections>
+            <point key="canvasLocation" x="173.18840579710147" y="176.78571428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="first_banner" width="335.33334350585938" height="131.66667175292969"/>
+    </resources>
+</document>
