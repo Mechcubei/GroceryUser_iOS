@@ -15,7 +15,11 @@ class ViewCollectionViewCell: UICollectionViewCell {
     @IBOutlet var lblCategoryName: UILabel!
     @IBOutlet var lblPrice: UILabel!
     @IBOutlet var btnAdd: DesignableButton!
-    
+    @IBOutlet var lblAddMinusValue: UILabel!
+    @IBOutlet var btnMinus: UIButton!
+    @IBOutlet var btnPlus: UIButton!
+    @IBOutlet var viewAddBtn: UIView!
+    @IBOutlet var viewAddItems: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

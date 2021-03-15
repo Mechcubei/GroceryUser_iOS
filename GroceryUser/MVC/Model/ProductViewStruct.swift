@@ -16,7 +16,7 @@ struct ProductViewStruct:Decodable {
 }
 
 struct ProductViewStruct2:Decodable {
-    let merchant_inventory_id,category_id,qty,price,marchent_user_id:Int?
+    let merchant_inventory_id,category_id,qty,price,marchent_user_id,discount,grocery_inventory_id:Int?
     let weight_type,inventory_name,image,category_name,category_image:String?
 }
 

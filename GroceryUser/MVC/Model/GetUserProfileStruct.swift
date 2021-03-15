@@ -18,4 +18,6 @@ struct GetUserProfileStruct:Decodable {
 struct GetUserProfileStruct2:Decodable{
     let image,email,first_name,last_name,latitude,longitude,address:String?
     let user_id,phone,country_code:Int?
+    let phone_status:Int?
+    let email_status:Int?
 }

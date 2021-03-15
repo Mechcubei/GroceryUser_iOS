@@ -13,67 +13,83 @@ import UIKit
 class ProductDetailVC: UIViewController {
     
     //MARK:- OUTLETS
-    @IBOutlet var packSizeTblView: UITableView!
     @IBOutlet var aboutProductTblView: UITableView!
     @IBOutlet var ratingTblView: UITableView!
-    @IBOutlet var packSizeTableviewHeight: NSLayoutConstraint!
     @IBOutlet var aboutproductTableviewheight: NSLayoutConstraint!
     @IBOutlet var ratingTableviewHeight: NSLayoutConstraint!
     @IBOutlet var lblProductName: UILabel!
     @IBOutlet var lblPrice: UILabel!
     @IBOutlet var imgProduct: UIImageView!
+    @IBOutlet var lblDiscount: UILabel!
+    @IBOutlet var lblAddToBasket: UILabel!
+    @IBOutlet var viewBtnAddToBasket: UIView!
     
     //MARK:- LOCAL VARIABLES
     var merchantInventoryID:Int?
+    var arrProductDetail = [ListCategoryStruct2]()
     var arrProductView = [ProductViewStruct2]()
+    var isCommingFrom:Bool = false
+    var basketQuantity = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.productView()
-        self.SetPackSizeTblViewHeight()
         self.SetAboutProductTblViewHeight()
         self.SetRatingTblViewHeight()
         self.registerNibFileName()
+        self.productView()
         
+        self.lblAddToBasket.text = self.isCommingFrom == true ? "ADD TO BASKET": "CHECK OUT"
+        self.viewBtnAddToBasket.isHidden = self.basketQuantity != 0 ? true : false
         
     }
-  
+    
     //MARK:- PRODUCT VIEW API'S
     func productView() {
         
         let params:[String:Any] = ["merchant_inventory_id":merchantInventoryID!]
         GetApiResponse.shared.productView(params: params) { (data:ProductViewStruct) in
             print(data)
-            
+
             self.arrProductView = data.data
             self.lblProductName.text = self.arrProductView[0].inventory_name
-            self.lblPrice.text = "\(String(describing: self.arrProductView[0].price!))"
+            self.lblPrice.text = "MRP: Rs.\(String(describing: self.arrProductView[0].price!))"
+            self.lblDiscount.text = "\(String(describing: self.arrProductView[0].discount!))/-"
             let imgUrl = self.arrProductView[0].category_image
             self.imgProduct.sd_setImage(with: URL(string: imgUrl ?? ""), placeholderImage: UIImage(named: ""))
-            
         }
     }
     
-    
-    
+    //MARK:- ADD TO BASKET API
+    func addToBasket(index:Int) {
+        
+        let params:[String:Any] = [
+            "merchant_user_id":arrProductView[index].marchent_user_id!,
+            "merchant_inventory_id":arrProductView[index].merchant_inventory_id!,
+            "quantity":"1"
+        ]
+        print(params)
+        Loader.shared.showLoader()
+        GetApiResponse.shared.addToBasket(params: params) { (data:AddToBasketStruct) in
+            print(data)
+            Loader.shared.stopLoader()
+            
+            guard data.statusCode == 200 else {
+                Utilities.shared.showAlertWithOK(title: "ALERT!", msg: data.message!)
+                return
+            }
+            self.navigationController?.popViewController(animated: true)
+            Utilities.shared.showAlert(title: "", msg: data.message!)
+        }
+    }
+   
     //MARK:- REGISTER NIB FILE NAME
       func registerNibFileName() {
-          
-        self.packSizeTblView.register(UINib(nibName: "PackSizeTableViewCell", bundle: nil), forCellReuseIdentifier: "PackSizeTableViewCell")
+
         self.aboutProductTblView.register(UINib(nibName: "AboutProductTableViewCell", bundle: nil), forCellReuseIdentifier: "AboutProductTableViewCell")
         self.ratingTblView.register(UINib(nibName: "RatingReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "RatingReviewTableViewCell")
       }
-    
-    //SET PACK SIZE HEIGHT DYNAMICALLY
-     func SetPackSizeTblViewHeight() {
-         DispatchQueue.main.async{
-             self.packSizeTblView.reloadData()
-             self.view.layoutIfNeeded()
-             self.packSizeTableviewHeight.constant = self.packSizeTblView.contentSize.height
-             self.view.layoutIfNeeded()
-         }
-     }
     
     //SET ABOUT PRODUCT HEIGHT DYNAMICALLY
      func SetAboutProductTblViewHeight() {
@@ -99,14 +115,23 @@ class ProductDetailVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func btnAddToBasket(_ sender: UIButton) {
+        guard isCommingFrom == true else {
+            print("CHECK OUT BUTTON TAPPED")
+            let vc = ENUM_STORYBOARD<DeliveryOptionVC>.tabbar.instantiativeVC()
+            vc.arrProduct = self.arrProductDetail
+            self.navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+        self.addToBasket(index: sender.tag)
+    }
 }
+
 //MARK:- EXTENSTION TABLEVIEW
 @available(iOS 13.0, *)
 extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableView == self.packSizeTblView){
-            return 4
-        } else if (tableView == self.aboutProductTblView) {
+      if (tableView == self.aboutProductTblView) {
             return 3
         } else {
             return 2
@@ -114,10 +139,7 @@ extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (tableView == self.packSizeTblView) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PackSizeTableViewCell", for: indexPath) as! PackSizeTableViewCell
-            return cell
-        } else if (tableView == self.aboutProductTblView) {
+      if (tableView == self.aboutProductTblView) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AboutProductTableViewCell", for: indexPath) as! AboutProductTableViewCell
             return cell
         } else {

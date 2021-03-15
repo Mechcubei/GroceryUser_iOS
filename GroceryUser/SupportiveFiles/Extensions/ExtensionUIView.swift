@@ -231,3 +231,18 @@ extension UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
+extension UILabel {
+    
+    func startBlink() {
+        UIView.animate(withDuration: 0.3,
+                       delay:0.05,
+                       options:[.allowUserInteraction, .curveEaseInOut, .autoreverse, .repeat],
+                       animations: { self.alpha = 0 },
+                       completion: nil)
+    }
+    
+    func stopBlink() {
+        layer.removeAllAnimations()
+        alpha = 1
+    }
+}

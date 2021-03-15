@@ -14,8 +14,8 @@ class SignUpVC: UIViewController {
     //MARK:- OUTLETS
     @IBOutlet var txtFirstName: UITextField!
     @IBOutlet var txtLastName: UITextField!
-    @IBOutlet var txtEmail: UITextField!
     
+    var fcmToken:String = UserDefaults.standard.string(forKey: "FCMToken")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,23 +24,28 @@ class SignUpVC: UIViewController {
     }
     //MARK:- EDIT PROFILE API
     func editProfile() {
-        
-        let params:[String:Any] = ["firstname":txtFirstName.text ?? "","lastname":txtLastName.text ?? ""]
+
+        let params:[String:Any] = [
+            "first_name":txtFirstName.text ?? "",
+            "last_name":txtLastName.text ?? "",
+            "fcm_token": fcmToken
+        ]
+        print(params)
         GetApiResponse.shared.editProfile(params: params) { (data: RegisterStruct) in
         print(data)
             if data.statusCode == 200 {
                 let vc = ENUM_STORYBOARD<TabbarVC>.tabbar.instantiativeVC()
-            
                 self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                self.navigationController?.popViewController(animated: true)
+                Utilities.shared.showAlertWithOK(title: "ALERT!", msg: data.message!)
             }
         }
     }
+
     //MARK:- VALIDATIONS
     func valid() -> Bool{
            
-        let valid = Validations.shareInstance.validateSignUp(firstName: txtFirstName.text ?? "", lastName: txtLastName.text ?? "", email: txtEmail.text ?? "")
+        let valid = Validations.shareInstance.validateSignUp(firstName: txtFirstName.text ?? "", lastName: txtLastName.text ?? "")
            
            switch valid {
                

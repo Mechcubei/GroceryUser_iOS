@@ -18,39 +18,57 @@ class UploadPhotoVC: UIViewController,ImagePickerDelegate {
     @IBOutlet var uploadPhotoCollectionView: UICollectionView!
     @IBOutlet var imgView: UIImageView!
     @IBOutlet var btnSelectImage: UIButton!
+    @IBOutlet var btnAdd: UIButton!
     
+    var merchantUserID:Int?
     var imagePicker: ImagePicker!
     var arrImg = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         self.registerNibFileName()
         self.setImage()
+        self.tabBarController?.tabBar.isHidden = true
         
     }
     //MARK:- REGISTER NIB FILE NAME
     func registerNibFileName() {
-        
         self.uploadPhotoCollectionView.register(UINib(nibName: "UploadProfileCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "UploadProfileCollectionViewCell")
     }
     
     func setImage() {
-        
         self.imgView.isHidden = arrImg.count == 0 ? false : true
-  
+    }
+    
+    //MARK:- Validations
+    func valid() -> Bool{
+        
+        let valid = Validations.shareInstance.validImage(imagesArray: arrImg)
+        
+        switch valid {
+            
+        case .success:
+            
+            return true
+            
+        case .failure(let error):
+            
+            Toast.show(text: error, type: .error)
+            
+            return false
+        }
     }
     
     // imagePi8cker  delegate  methods
     func didSelect(image: UIImage?) {
-       // self.imgView.image = image
-        
+        guard image != nil else {return}
         self.arrImg.append(image!)
-        print(arrImg)
         self.imgView.isHidden = true
         self.btnSelectImage.isUserInteractionEnabled = false
         self.uploadPhotoCollectionView.reloadData()
+        
     }
 
     //MARK:- ACTION BUTTONS
@@ -59,20 +77,26 @@ class UploadPhotoVC: UIViewController,ImagePickerDelegate {
     }
     
     @IBAction func btnSend(_ sender: Any) {
+        guard  valid() else { return }
         self.UploadPhoto()
     }
+    
     @IBAction func btnBack(_ sender: Any) {
-        
         self.navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func btnAdd(_ sender: Any) {
-        self.imagePicker.present(from: sender as! UIView)
         
+        if arrImg.count < 5 {
+             self.imagePicker.present(from: sender as! UIView)
+        } else {
+            Utilities.shared.showAlertWithOK(title: "ALERT!", msg: "Already reached maximun limit")
+        }
     }
+        
     @objc func deleteCell(sender:UIButton) {
         
-        
-        let refreshAlert = UIAlertController(title: "Alert", message: "Are you sure, you want to remove this Item", preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "Alert", message: "Are you sure, you want to remove this Item?", preferredStyle: UIAlertController.Style.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
@@ -82,13 +106,12 @@ class UploadPhotoVC: UIViewController,ImagePickerDelegate {
             self.uploadPhotoCollectionView.reloadData()
             
         }))
+        
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (action: UIAlertAction!) in
             print("Handle Cancel Logic here")
             refreshAlert .dismiss(animated: true, completion: nil)
         }))
         self.present(refreshAlert, animated: true, completion: nil)
-        
-        
     }
     
     //MARK:- Upload photo
@@ -99,21 +122,23 @@ class UploadPhotoVC: UIViewController,ImagePickerDelegate {
             "count":arrImg.count,
             "address":"Sector 76, Sahibzada Ajit Singh Nagar, Punjab 140308",
             "latitude":"30.700238",
-            "longitude":"76.702186"
+            "longitude":"76.702186",
+            "merchent_user_id":merchantUserID!
         ]
+        print(parameters)
         
         let headers:[String:String] = [
             "Authorization": createHeaders()
         ]
-        
         Alamofire.upload(multipartFormData: { multipartFormData in
                         
             // For images
             for i in 0..<self.arrImg.count{
                 let imgData = self.arrImg[i].jpegData(compressionQuality: 0.2)!
                 let image = i + 1
+                print(imgData)
                 multipartFormData.append(imgData, withName: "image_" + "\(image)",fileName:"file.jpg", mimeType: "image/png")
-                print("image_" + "\(image)")
+                
             }
             
             // for other paramaters
@@ -138,30 +163,32 @@ class UploadPhotoVC: UIViewController,ImagePickerDelegate {
                 upload.uploadProgress(closure: { (progress) in
                     
                     print("Upload Progress: \(progress.fractionCompleted)")
+                    Loader.shared.stopLoader()
                 })
                 
                 upload.responseJSON { response in
+                     Loader.shared.stopLoader()
                     print(response)
-                    let data = JSON(response)
-                    let status = data["statusCode"].intValue
-                    let message = data["message"].string
                                         
+                    let data = response.result.value
+                    let dataValues  = data as! NSDictionary
+                    
+                    let status = dataValues["statusCode"] as! Int
+                    let message = dataValues["message"] as!  String
+
                     guard status == 200 else {
-                        Utilities.shared.showAlertWithOK(title: "", msg: message ?? "" )
                         return
                     }
-                    
+                  
                     let dashboardVC = self.navigationController!.viewControllers.filter { $0 is CategoriesVC }.first!
                     self.navigationController!.popToViewController(dashboardVC, animated: true)
-                    Loader.shared.stopLoader()
+                      Utilities.shared.showAlertWithOK(title: "", msg: message)
+                    
                 }
-                
-               
             case .failure(let encodingError):
+                 Loader.shared.stopLoader()
                 
                 print(encodingError)
-                
-                
             }
         }
     }
@@ -179,7 +206,6 @@ extension UploadPhotoVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
         cell.imgView.image = arrImg[indexPath.row]
         cell.btnDeleteCell.tag = indexPath.row
         cell.btnDeleteCell.addTarget(self, action: #selector(deleteCell(sender:)), for: .touchUpInside)
-        
         return cell
         
     }

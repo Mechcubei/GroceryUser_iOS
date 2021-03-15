@@ -8,9 +8,6 @@
 
 import Foundation
 
-
-
-
 struct SelectMerchantStruct:Decodable {
     let statusCode:Int?
     let message:String?
@@ -22,5 +19,4 @@ struct SelectMerchantStruct2:Decodable {
     let category_id,marchent_user_id:Int?
     let first_name,last_name,username:String?
     let image:String?
-
 }

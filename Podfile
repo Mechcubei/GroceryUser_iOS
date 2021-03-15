@@ -19,6 +19,12 @@ target 'GroceryUser' do
   pod 'SDWebImage', '~> 5.0'
   pod 'RangeSeekSlider'
   pod'CountryPickerView'
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   
   target 'GroceryUserTests' do
     inherit! :search_paths

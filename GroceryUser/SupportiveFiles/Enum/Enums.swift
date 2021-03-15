@@ -60,11 +60,13 @@ enum AlertButtonTexts:String{
 enum ENUMCOLOUR {
     
     case themeColour
+    case ButtonUserInteractionColorDisable
         
     func getColour() -> UIColor {
         
         switch self {
-            case .themeColour: return UIColor.init(red: 97/255, green: 161/255, blue: 20/255, alpha: 1.0)
+        case .themeColour: return UIColor.init(red: 97/255, green: 161/255, blue: 20/255, alpha: 1.0)
+        case .ButtonUserInteractionColorDisable: return UIColor.init(red: 154/255, green: 205/255, blue: 50/255, alpha: 1.0)
         }
     }
 }

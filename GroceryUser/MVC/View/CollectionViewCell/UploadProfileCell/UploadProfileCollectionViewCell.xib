@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,40 +20,41 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONk-Vg-Jcw">
                         <rect key="frame" x="8" y="8" width="162" height="159"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EFX-fA-r1g">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="All-Products" translatesAutoresizingMaskIntoConstraints="NO" id="EFX-fA-r1g">
                                 <rect key="frame" x="8" y="8" width="146" height="110"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="KyG-PA-aaM">
-                                <rect key="frame" x="8" y="126" width="146" height="25"/>
+                                <rect key="frame" x="48.5" y="126" width="65" height="25"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPP-SA-1IR">
-                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="25"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="4QW-mD-tX1"/>
                                             <constraint firstAttribute="height" constant="25" id="Bka-YB-SHY"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="eye" catalog="system"/>
+                                        <state key="normal" image="eye"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqC-Py-WcM">
-                                        <rect key="frame" x="80.5" y="0.0" width="65.5" height="25"/>
+                                        <rect key="frame" x="40" y="0.0" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="BVo-V3-pni"/>
+                                            <constraint firstAttribute="width" constant="25" id="fUl-VF-nC6"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="trash.fill" catalog="system"/>
+                                        <state key="normal" image="bin"/>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="KyG-PA-aaM" firstAttribute="leading" secondItem="ONk-Vg-Jcw" secondAttribute="leading" constant="8" id="7Ym-Mk-4Yp"/>
                             <constraint firstItem="EFX-fA-r1g" firstAttribute="top" secondItem="ONk-Vg-Jcw" secondAttribute="top" constant="8" id="FKz-46-Vte"/>
                             <constraint firstAttribute="trailing" secondItem="EFX-fA-r1g" secondAttribute="trailing" constant="8" id="MuJ-5Q-qU0"/>
                             <constraint firstAttribute="bottom" secondItem="KyG-PA-aaM" secondAttribute="bottom" constant="8" id="P0F-Nt-YrO"/>
                             <constraint firstItem="EFX-fA-r1g" firstAttribute="leading" secondItem="ONk-Vg-Jcw" secondAttribute="leading" constant="8" id="S7F-es-86y"/>
+                            <constraint firstItem="KyG-PA-aaM" firstAttribute="centerX" secondItem="EFX-fA-r1g" secondAttribute="centerX" id="cTZ-uo-cbQ"/>
                             <constraint firstItem="KyG-PA-aaM" firstAttribute="top" secondItem="EFX-fA-r1g" secondAttribute="bottom" constant="8" id="o9A-l4-EP8"/>
-                            <constraint firstAttribute="trailing" secondItem="KyG-PA-aaM" secondAttribute="trailing" constant="8" id="tml-Lc-xR1"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -73,7 +75,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="eye" catalog="system" width="64" height="40"/>
-        <image name="trash.fill" catalog="system" width="60" height="64"/>
+        <image name="All-Products" width="93.333335876464844" height="66.666664123535156"/>
+        <image name="bin" width="60" height="60"/>
+        <image name="eye" width="60" height="60"/>
     </resources>
 </document>

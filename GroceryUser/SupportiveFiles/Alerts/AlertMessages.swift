@@ -22,6 +22,9 @@ enum  AlertMessages: String {
     case notValidPhonenumber = "Please enter valid phone number"
     case emptyAddress = "Please enter your address"
     case emptyGender = "Please select Gender"
+    case emptyImage = "Please select Image"
+    case emptyTime = "Please select Time"
+    case emptyDate = "Please select Date"
     
 }
 extension UIAlertController {

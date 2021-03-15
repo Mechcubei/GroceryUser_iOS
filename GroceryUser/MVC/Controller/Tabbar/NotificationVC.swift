@@ -37,6 +37,7 @@ class NotificationVC: UIViewController {
         
         self.add(asChildViewController: self.aboutSelfPVC)
         self.aboutSelfPVC.delegateScroll = self
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     private func add(asChildViewController viewController: UIViewController) {

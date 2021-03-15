@@ -24,7 +24,8 @@ class SearchVC: UIViewController {
 
       //  self.searchProduct()
         self.registerNibFileName()
-        txtSearch.addTarget(self, action: #selector(textFieldDidChange(_:)),for: .editingChanged)
+        self.txtSearch.addTarget(self, action: #selector(textFieldDidChange(_:)),for: .editingChanged)
+        self.txtSearch.becomeFirstResponder()
 
     }
     //MARK:- REGISTER NIB FILE NAME
@@ -41,11 +42,10 @@ class SearchVC: UIViewController {
             self.arrSearchProduct = data.data!
             self.tblView.reloadData()
         }
-        
     }
     
     //MARK:- SEARCH PRODUCT API
-    func searchProduct() {
+    func searchProductABC() {
         
         let params:[String:String] = [:]
         GetApiResponse.shared.searchProduct(params: params) { (data:ListCategoryStruct) in
@@ -53,13 +53,22 @@ class SearchVC: UIViewController {
             self.arrSearchProduct = data.data!
             self.tblView.reloadData()
         }
-        
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        searchProduct(searchString: txtSearch.text!)
-      }
-
+        self.searchProduct(searchString: txtSearch.text!)
+    }
+    
+    //MARK:- ACTION BUTTON
+    @IBAction func btnClear(_ sender: Any) {
+        self.txtSearch.text = ""
+        self.arrSearchProduct.removeAll()
+        self.tblView.reloadData()
+    }
+    
+    @IBAction func btnSearch(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 //MARK:- EXTENTION TABLEVIEW
 @available(iOS 13.0, *)
@@ -81,6 +90,6 @@ extension SearchVC:UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 170
+        return 155
     }
 }

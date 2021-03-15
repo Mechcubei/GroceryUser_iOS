@@ -13,11 +13,17 @@ class UploadVC: UIViewController {
     
     //MARK:- LOCAL VARIABLES
     var categoryID:Int?
+    var merchantUserID:Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tabBarController?.tabBar.isHidden = true
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     @IBAction func btnUpload(_ sender: Any) {
@@ -28,6 +34,7 @@ class UploadVC: UIViewController {
     @IBAction func btnSelectList(_ sender: Any) {
         let vc = ENUM_STORYBOARD<SelectListVC>.tabbar.instantiativeVC()
         vc.categoriesID = categoryID
+        vc.merchantUserID = merchantUserID
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func btnBack(_ sender: Any) {

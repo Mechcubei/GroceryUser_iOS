@@ -14,22 +14,24 @@ class SelectListTableViewCell: UITableViewCell {
     var btnProductDetailTrigger: (() -> Void)?
     var btnPlusAction:(() -> Void)?
     var btnMinusAction:(() -> Void)?
-
+    
     //MARK:- OUTLETS
+    @IBOutlet var btnBuyNow: DesignableButton!
     @IBOutlet var viewAddBtn: UIView!
     @IBOutlet var viewAddItem: UIView!
     @IBOutlet var btnAdd: DesignableButton!
     @IBOutlet var btnProductDetail: UIButton!
     
+    @IBOutlet var lblDiscount: UILabel!
     
     @IBOutlet var btnMinus: UIButton!
     @IBOutlet var btnPlus: UIButton!
-    
-    
     @IBOutlet var imgProduct: UIImageView!
     @IBOutlet var lblProductName: UILabel!
     @IBOutlet var lblProductInventoryName: UILabel!
+    
     @IBOutlet var lblPrice: UILabel!
+    
     @IBOutlet var lblWeight: UILabel!
     @IBOutlet var lblPlusMinus: UILabel!
     @IBOutlet var viewMinusBtn: DesignableButton!

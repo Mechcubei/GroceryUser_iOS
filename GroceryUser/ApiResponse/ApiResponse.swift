@@ -93,13 +93,13 @@ class GetApiResponse: UIViewController {
         }
     }
     func getProfile<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
-        GetApiResponse.shared.getDataAllSilent(api: "getprofile",parameters: params) { (data: T) in
+        GetApiResponse.shared.getDataAllSilent(api: "get_profile",parameters: params) { (data: T) in
             completion(data)
         }
     }
     
     func editProfile<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
-        GetApiResponse.shared.getDataAllSilent(api: "editprofile",parameters: params) { (data: T) in
+        GetApiResponse.shared.getDataAllSilent(api: "edit_user",parameters: params) { (data: T) in
             completion(data)
         }
     }
@@ -145,30 +145,99 @@ class GetApiResponse: UIViewController {
             completion(data)
         }
     }
+    
     func productView<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
         GetApiResponse.shared.getDataAllSilent(api: "product_view",parameters: params) { (data: T) in
             completion(data)
         }
     }
+    
     func recentView<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
         GetApiResponse.shared.getDataAllSilent(api: "recent_view",parameters: params) { (data: T) in
             completion(data)
         }
     }
+    
     func mostView<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
         GetApiResponse.shared.getDataAllSilent(api: "most_view",parameters: params) { (data: T) in
             completion(data)
         }
     }
+    
     func searchProduct<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
         GetApiResponse.shared.getDataAllSilent(api: "search_product",parameters: params) { (data: T) in
             completion(data)
         }
     }
+    
     func selectMerchant<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
         GetApiResponse.shared.getDataAllSilent(api: "get_merchants",parameters: params) { (data: T) in
             completion(data)
         }
     }
+    
+    func catInventoryList<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "cat_inventory_list",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    
+    func filterProduct<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "filter_product",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func addToBasket<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "addToBasket",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func basketList<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "basketList",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func deleteBasketList<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "deletebasket",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func userOrderView<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "merchants_order_view",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func orderStatus<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "order_status",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func orderCancelationReason<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "order_cancel",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func getCancellations<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "cancellations",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func getVerificationEmailPhoneNo<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "verification-otp",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    func veriFiedOtp<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "verified-otp",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
+    
+    func expiredOtp<T: Decodable>(params:[String:Any],completion: @escaping(T)->()) {
+        GetApiResponse.shared.getDataAllSilent(api: "expire-otp",parameters: params) { (data: T) in
+            completion(data)
+        }
+    }
 }
+
 

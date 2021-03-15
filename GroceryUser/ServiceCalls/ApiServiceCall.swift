@@ -11,8 +11,6 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 
-
-
 @available(iOS 13.0, *)
 class ApiService {
     
@@ -57,8 +55,7 @@ class ApiService {
                         
                     }
                 }
-                
-                
+            
                 SVProgressHUD.dismiss()
                 break
             case .failure(_):

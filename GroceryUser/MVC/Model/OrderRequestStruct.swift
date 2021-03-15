@@ -11,9 +11,8 @@ struct OrderRequestStruct:Decodable {
     let statusCode:Int?
     let message:String?
     let has_data:Bool?
-    let data:OrderRequestStruct2?
+    let data:OrderRequestStruct2
 }
-
 struct OrderRequestStruct2:Decodable {
-    let merchant_inventory_id:[String]?
+    
 }

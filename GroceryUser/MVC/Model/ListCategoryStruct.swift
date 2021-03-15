@@ -16,13 +16,18 @@ struct ListCategoryStruct:Decodable {
 }
 
 struct ListCategoryStruct2:Decodable {
-    let category_id,merchant_inventory_id,grocery_inventory_id,qty,price,marchent_user_id:Int?
+    let category_id,merchant_inventory_id,grocery_inventory_id,qty,price,marchent_user_id,total_items,discount,basket_qty:Int?
     let category_name,first_name,last_name,username:String?
     let category_image:String?
     let inventory_name:String?
     let weight_type:String?
     let image:String?
-    var selectedQty:Int? = 0
+    var selectedQty:Int? = 1
     var isSelected:Bool?
-
+    var basket_id:Int?
+    var quantity:Int?
+    var totalPrice:Int? = 0
+    let count:Int?
+    let total_discount,saved_price,delivery_charge:Int?
+    
 }

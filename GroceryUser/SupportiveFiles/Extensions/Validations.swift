@@ -5,6 +5,7 @@
 //  Copyright © 2020 Amandeep tirhima. All rights reserved.
 
 import Foundation
+import UIKit
 
 enum Valid {
     case success
@@ -32,9 +33,17 @@ class Validations{
            }
            return true
        }
+    
+    func validatePhoneNumber(value: String) -> Bool {
+        
+        let PHONE_REGEX = "^[6-9]\\d{9}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluate(with: value)
+        return result
+    }
         
     // SignUp valiation
-    func validateSignUp(firstName:String,lastName:String,email:String) -> Valid{
+    func validateSignUp(firstName:String,lastName:String) -> Valid{
         
         
         
@@ -45,18 +54,6 @@ class Validations{
         } else if lastName.isEmpty  {
             
             return Valid.failure(AlertMessages.emptyLastName.rawValue)
-            
-        } else if email.isEmpty {
-            
-            return Valid.failure( AlertMessages.emptyEmailId.rawValue)
-            
-        }  else if !(email.isEmpty) {
-            
-            if !self.validateEmail(email: email){
-                
-                return Valid.failure(AlertMessages.notValidEmailId.rawValue)
-                
-            }
             
         }
         return Valid.success
@@ -73,6 +70,24 @@ class Validations{
                 return Valid.failure(AlertMessages.notValidEmailId.rawValue)
                 
             }
+        }
+        return Valid.success
+    }
+    
+    func validImage(imagesArray:[UIImage]) -> Valid {
+        if imagesArray.count == 0 {
+            
+            return Valid.failure(AlertMessages.emptyImage.rawValue)
+        }
+        return Valid.success
+    }
+    
+    func validTimeAndDate(pickUpDate:String, pickUpTime:String) -> Valid {
+        
+        if pickUpDate.isEmpty {
+            return Valid.failure(AlertMessages.emptyDate.rawValue)
+        } else if pickUpTime.isEmpty {
+            return Valid.failure(AlertMessages.emptyTime.rawValue)
         }
         return Valid.success
     }

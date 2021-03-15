@@ -64,14 +64,15 @@ extension String:Localizable{
 
 extension Date
 {
-    func toString( dateFormat format  : String ) -> String
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: self)
+    func convertInDate(format:String,date:String) -> Date?{
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        let currentDate = formatter.date(from: date)
+        return currentDate
     }
-
+    
 }
+
 
  
 //MARK:-Colour extension

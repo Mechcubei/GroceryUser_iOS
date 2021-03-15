@@ -59,6 +59,7 @@ class LoginVC: UIViewController,CountryPickerViewDelegate, CountryPickerViewData
                     if data.statusCode == 200 {
                         let vc = ENUM_STORYBOARD<OtpVerificationVC>.login.instantiativeVC()
                         vc.phoneNumber = self.txtPhoneNumber.text
+                        vc.countryCode = newString
                         self.navigationController?.pushViewController(vc, animated: true)
                         
                     } else {

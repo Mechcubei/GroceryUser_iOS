@@ -14,17 +14,22 @@ class ReviewBasketTableViewCell: UITableViewCell {
     @IBOutlet var lblProductName: UILabel!
     @IBOutlet var lblWeightType: UILabel!
     @IBOutlet var lblPrice: UILabel!
+    @IBOutlet var lblDiscount: UILabel!
     @IBOutlet var imgProduct: UIImageView!
+    @IBOutlet var lblValueIncrimentAndDecrement: UILabel!
+    @IBOutlet var btnMinus: UIButton!
+    @IBOutlet var btnPlus: UIButton!
+    @IBOutlet var btnDelete: UIButton!
+    @IBOutlet var viewPlusMinus: UIView!
+    @IBOutlet var btnBuyNow: DesignableButton!
+    @IBOutlet var btnProductDetail: UIButton!
     
-    
-    var btnProductDetailAction: (() -> Void)?
+    //MARK:- LOCAL VARIABLES
     
     override func awakeFromNib() {
         super.awakeFromNib()
   
+        
     }
-    @IBAction func btnProductDetail(_ sender: Any) {
-        self.btnProductDetailAction?()
-    }
-    
+   
 }
